@@ -71,9 +71,9 @@
     padding: 80px 2rem 4rem;
     position: relative;
     background:
-      radial-gradient(circle at 20% 20%, rgba(37,99,235,0.15) 0%, transparent 40%),
-      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.85) 0%, transparent 30%),
-      var(--cream);
+      radial-gradient(circle at 20% 20%, rgba(37,99,235,0.12) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.7) 0%, transparent 30%),
+      #e2e8f0;
   }
   .hero-label {
     font-family: 'DM Mono', monospace;
@@ -87,6 +87,9 @@
     font-size: clamp(3.5rem, 10vw, 7rem);
     font-weight: 300; line-height: 1.05;
     color: var(--ink);
+    background: rgba(15,23,42,0.08);
+    padding: 0.6rem 1.2rem;
+    border-radius: 1.2rem;
     opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
   }
   .hero-name span { color: var(--accent); font-style: italic; }
@@ -94,6 +97,9 @@
     margin-top: 1.5rem;
     font-size: 1.05rem; color: var(--muted); font-weight: 300;
     max-width: 480px;
+    background: rgba(15,23,42,0.05);
+    padding: 0.8rem 1rem;
+    border-radius: 1rem;
     opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
   }
   .hero-divider {
@@ -309,8 +315,8 @@
   .video-desc { font-size: 0.82rem; color: var(--muted); }
 
   /* ── CONTACT ── */
-  #contact { background: #ffffff; color: var(--ink); }
-  #contact .section-num { color: rgba(37,99,235,0.12); }
+  #contact { background: #cbd5e1; color: var(--ink); }
+  #contact .section-num { color: rgba(15,23,42,0.18); }
   #contact .section-ko { color: var(--ink); }
   #contact .section-en { color: rgba(37,99,235,0.55); }
   #contact .section-title-wrap { border-color: rgba(15,23,42,0.12); }
