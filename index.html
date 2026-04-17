@@ -719,23 +719,21 @@
     <div class="video-grid" id="video-grid">
       <div class="video-card">
         <div class="video-placeholder" id="vp-0" onclick="handleVideoClick(0)">
-          <div class="video-play-icon">▶</div>
-          <div class="video-placeholder-text">YouTube URL 입력 또는<br>영상 파일 업로드</div>
+          <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe>
         </div>
         <div class="video-info">
-          <div class="video-title editable-field" contenteditable="false" data-key="vid-0-title">영상 제목을 입력하세요</div>
-          <div class="video-desc editable-field" contenteditable="false" data-key="vid-0-desc">영상에 대한 간단한 설명을 입력하세요.</div>
+          <div class="video-title editable-field" contenteditable="false" data-key="vid-0-title">VS Code 소개 영상</div>
+          <div class="video-desc editable-field" contenteditable="false" data-key="vid-0-desc">Visual Studio Code의 기본 기능과 사용법을 소개하는 영상입니다.</div>
         </div>
         <button class="admin-btn-sm del" style="display:none; margin:0 1rem 1rem;" onclick="this.closest('.video-card').remove()">삭제</button>
       </div>
       <div class="video-card">
         <div class="video-placeholder" id="vp-1" onclick="handleVideoClick(1)">
-          <div class="video-play-icon">▶</div>
-          <div class="video-placeholder-text">YouTube URL 입력 또는<br>영상 파일 업로드</div>
+          <iframe src="https://www.youtube.com/embed/0I647GU3lII" allowfullscreen></iframe>
         </div>
         <div class="video-info">
-          <div class="video-title editable-field" contenteditable="false" data-key="vid-1-title">영상 제목을 입력하세요</div>
-          <div class="video-desc editable-field" contenteditable="false" data-key="vid-1-desc">영상에 대한 간단한 설명을 입력하세요.</div>
+          <div class="video-title editable-field" contenteditable="false" data-key="vid-1-title">프론트엔드 개발 기초</div>
+          <div class="video-desc editable-field" contenteditable="false" data-key="vid-1-desc">HTML, CSS, JavaScript를 사용한 웹 개발 기본을 설명하는 영상입니다.</div>
         </div>
         <button class="admin-btn-sm del" style="display:none; margin:0 1rem 1rem;" onclick="this.closest('.video-card').remove()">삭제</button>
       </div>
@@ -920,15 +918,46 @@
       const saved = localStorage.getItem('pf_' + key);
       if (saved) el.innerHTML = saved;
     });
-    // Profile photo
+    // Profile photo - 샘플 추가
     const savedPhoto = localStorage.getItem('pf_profile_photo');
-    if (savedPhoto) setProfilePhoto(savedPhoto);
-    // Gallery
+    if (savedPhoto) {
+      setProfilePhoto(savedPhoto);
+    } else {
+      // 샘플 프로필 사진
+      const samplePhoto = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=face&auto=format&q=75';
+      setProfilePhoto(samplePhoto);
+      localStorage.setItem('pf_profile_photo', samplePhoto);
+    }
+    // Gallery - 샘플 추가
     const savedGallery = localStorage.getItem('pf_gallery');
     if (savedGallery) {
       const imgs = JSON.parse(savedGallery);
       const cells = document.querySelectorAll('#gallery-grid .gallery-cell');
       imgs.forEach((src, i) => {
+        if (src && cells[i]) {
+          const img = document.createElement('img');
+          img.src = src;
+          cells[i].innerHTML = '';
+          cells[i].appendChild(img);
+          const ov = document.createElement('div');
+          ov.className = 'gallery-overlay';
+          ov.innerHTML = '<div class="gallery-overlay-icon">🔍</div>';
+          cells[i].appendChild(ov);
+        }
+      });
+    } else {
+      // 샘플 갤러리 이미지
+      const sampleGallery = [
+        'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=400&fit=crop&auto=format&q=75',
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop&auto=format&q=75',
+        'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop&auto=format&q=75',
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop&auto=format&q=75',
+        'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=400&fit=crop&auto=format&q=75',
+        'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop&auto=format&q=75'
+      ];
+      localStorage.setItem('pf_gallery', JSON.stringify(sampleGallery));
+      const cells = document.querySelectorAll('#gallery-grid .gallery-cell');
+      sampleGallery.forEach((src, i) => {
         if (src && cells[i]) {
           const img = document.createElement('img');
           img.src = src;
